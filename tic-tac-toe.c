@@ -33,7 +33,7 @@ int main (void)
     // check if the chosen player is valid.
     if (player != 'X' && player != 'O')
     {
-        printf("\nInvalid player.\n\n");
+        printf("Invalid player.\n\n");
         return 1;
     }
 

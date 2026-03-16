@@ -13,7 +13,7 @@ int main (void)
 {
     // variables created in memory.
     char p[9], player;
-    bool win = false, stop_move = false;
+    bool win = false, invalid_move;
     int move = 0, buff;
     
     // add a dot in each position of the tic-tac-toe board.
@@ -77,27 +77,20 @@ int main (void)
         getchar();
         printf("\n");
 
-        // create options in n[9] from 1 to 9.
-        int n[9];
-        for (int i = 0; i < 9; i++)
-        {
-            n[i] = i + 1;
-        }
-
         // update the board to reflect the chosen option.
-        stop_move = true;
-        for (int i = 0; i < 9; i++)
+        int pos = buff - 1;
+        if (buff >= 1 && buff <= 9 && p[pos] == '.')
         {
-            if ((n[i] == buff) && (p[i] == '.'))
-            {
-                p[i] = player;
-                stop_move = false;
-                break;
-            }
+            p[pos] = player;
+            invalid_move = false;
+        }
+        else
+        {
+            invalid_move = true;
         }
 
         // if the move is invalid, display a message.
-        if (stop_move == true)
+        if (invalid_move == true)
         {
             printf("\n");
             printf("Jogada inválida.");
@@ -111,13 +104,9 @@ int main (void)
         player = change_player(player);
 
         // increment the number of rounds.
-        if (stop_move == false)
+        if (invalid_move == false)
         {
             move++;
-        }
-        else
-        {
-            stop_move = false;
         }
     }
     return 0;

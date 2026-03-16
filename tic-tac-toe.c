@@ -4,7 +4,6 @@ making it as efficient as possible.
 */
 
 #include <stdio.h>
-#include <ctype.h>
 
 int calc(char p[], char player, int move);
 char change_player(char player);
@@ -28,7 +27,12 @@ int main (void)
     scanf("%1c", &player);
     getchar();
     printf("\n");
-    player = toupper(player);
+
+    // if given value is lowercase, turn it to uppercase
+    if (player == 111 || player == 120)
+    {
+        player = player - 32;
+    }
 
     // check if the chosen player is valid.
     if (player != 'X' && player != 'O')

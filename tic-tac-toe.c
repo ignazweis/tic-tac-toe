@@ -49,13 +49,13 @@ int main (void)
 
             printf("[%c] won!", player);
             printf("\n\n");
-            return 0;
+            break;
         }
         else if (move == 9)
         {
             printf("It's a draw!");
             printf("\n\n");
-            return 0;
+            break;
         }
 
         printf("> ");

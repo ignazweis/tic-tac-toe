@@ -1,8 +1,3 @@
-/*
-It is expected that I will rewrite this code and improve its features,
-making it as efficient as possible.
-*/
-
 #include <stdio.h>
 
 int calc(char p[], char player, int move);
@@ -10,31 +5,26 @@ char change_player(char player);
 
 int main (void)
 {
-    // variables created in memory.
     char p[9], player;
     bool win = false, invalid_move;
     int move = 0, buff;
     
-    // add a dot in each position of the tic-tac-toe board.
     for (int i = 0; i < 9; i++)
     {
         p[i] = '.';
     }
 
-    // choose the starting player.
     printf("Which player goes first? [O/X]\n");
     printf("> ");
     scanf("%1c", &player);
     getchar();
     printf("\n");
 
-    // if given value is lowercase, turn it to uppercase
     if (player == 111 || player == 120)
     {
         player = player - 32;
     }
 
-    // check if the chosen player is valid.
     if (player != 'X' && player != 'O')
     {
         printf("Invalid player.\n\n");
@@ -43,7 +33,6 @@ int main (void)
 
     while (true)
     {
-        // display the tic-tac-toe board.
         printf("  ╔═══╤═══╤═══╗\n");
         printf("  ║ %c │ %c │ %c ║  1   2   3\n", p[0], p[1], p[2]);
         printf("  ╟───┼───┼───╢\n");
@@ -57,10 +46,8 @@ int main (void)
             printf("[%c] player\n", player);
         }
 
-        // check if someone has won or if the game ended.
         if (win == true)
         {
-            // switch the player.
             player = change_player(player);
 
             printf("[%c] won!", player);
@@ -76,12 +63,10 @@ int main (void)
 
         printf("> ");
 
-        // store the option in the buffer.
         scanf("%1i", &buff);
         getchar();
         printf("\n");
 
-        // update the board to reflect the chosen option.
         int pos = buff - 1;
         if (buff >= 1 && buff <= 9 && p[pos] == '.')
         {
@@ -93,7 +78,6 @@ int main (void)
             invalid_move = true;
         }
 
-        // if the move is invalid, display a message.
         if (invalid_move == true)
         {
             printf("\n");
@@ -101,13 +85,10 @@ int main (void)
             printf("\n\n");
         }
 
-        // if someone wins, end the loop using the win variable.
         win = calc(p, player, move);
 
-        // switch the player.
         player = change_player(player);
 
-        // increment the number of rounds.
         if (invalid_move == false)
         {
             move++;
